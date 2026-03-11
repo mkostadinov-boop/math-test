@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<title>Тест: Аритметична прогресия</title>
+<style>
+body{font-family:Arial, sans-serif;background:#f4f6fb;margin:0;padding:20px}
+.container{max-width:900px;margin:auto;background:white;padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1)}
+h1{text-align:center}
+.question{margin-bottom:20px;padding:10px;border-radius:8px}
+.points{font-size:12px;color:#666}
+.correct{background:#d4edda}
+.wrong{background:#f8d7da}
+button{padding:10px 20px;border:none;border-radius:6px;background:#4a6cf7;color:white;font-size:16px;cursor:pointer}
+.result{font-size:20px;margin-top:20px;font-weight:bold}
+.answers{margin-top:20px;background:#eef2ff;padding:15px;border-radius:8px}
+input{padding:6px;margin-top:5px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Интерактивен тест: Аритметична прогресия</h1>
+
+<div class="question" id="box1">
+<p>1. Намерете разликата d на прогресията 3, 7, 11 <span class="points">(2 т.)</span></p>
+<input id="q1">
+</div>
+
+<div class="question" id="box2">
+<p>2. Намерете a5 на прогресията 3,7,11 <span class="points">(2 т.)</span></p>
+<input id="q2">
+</div>
+
+<div class="question" id="box3">
+<p>3. a1 = 6, d = 4. Намерете a7 <span class="points">(2 т.)</span></p>
+<input id="q3">
+</div>
+
+<div class="question" id="box4">
+<p>4. a1 = 2, d = 3. Намерете a10 <span class="points">(2 т.)</span></p>
+<input id="q4">
+</div>
+
+<div class="question" id="box5">
+<p>5. Намерете d ако a1 = 5 и a2 = 8 <span class="points">(2 т.)</span></p>
+<input id="q5">
+</div>
+
+<div class="question" id="box6">
+<p>6. a1 = 4, d = 5. Намерете a12 <span class="points">(3 т.)</span></p>
+<input id="q6">
+</div>
+
+<div class="question" id="box7">
+<p>7. Намерете S10 ако a1 = 3, d = 2 <span class="points">(3 т.)</span></p>
+<input id="q7">
+</div>
+
+<div class="question" id="box8">
+<p>8. a1 = 7, a15 = 49. Намерете d <span class="points">(3 т.)</span></p>
+<input id="q8">
+</div>
+
+<div class="question" id="box9">
+<p>9. a1 = 2, d = 3, an = 59. Намерете n <span class="points">(5.5 т.)</span></p>
+<input id="q9">
+</div>
+
+<div class="question" id="box10">
+<p>10. S = 120, a1 = 3, d = 3. Намерете n <span class="points">(5.5 т.)</span></p>
+<input id="q10">
+</div>
+
+<button onclick="checkTest()">Провери резултата</button>
+
+<div class="result" id="result"></div>
+
+<div class="answers" id="answers" style="display:none"></div>
+
+</div>
+
+<script>
+const correctAnswers = [4,19,30,29,3,59,120,3,20,8];
+const points = [2,2,2,2,2,3,3,3,5.5,5.5];
+
+function checkTest(){
+let score = 0;
+let answersHTML = "<h3>Верни отговори:</h3>";
+
+for(let i=1;i<=10;i++){
+let user = Number(document.getElementById('q'+i).value);
+let box = document.getElementById('box'+i);
+
+if(user === correctAnswers[i-1]){
+score += points[i-1];
+box.classList.add('correct');
+answersHTML += "Задача " + i + ": ✔ Верен (" + correctAnswers[i-1] + ")<br>";
+}else{
+box.classList.add('wrong');
+answersHTML += "Задача " + i + ": ✘ Верният отговор е " + correctAnswers[i-1] + "<br>";
+}
+}
+
+let grade = 2;
+if(score >= 27) grade = 6;
+else if(score >= 23) grade = 5;
+else if(score >= 18) grade = 4;
+else if(score >= 13) grade = 3;
+
+document.getElementById('result').innerHTML = "Точки: " + score + " / 30 <br> Оценка: " + grade;
+
+document.getElementById('answers').style.display='block';
+document.getElementById('answers').innerHTML = answersHTML;
+}
+</script>
+
+</body>
+</html>
